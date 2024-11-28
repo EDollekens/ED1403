@@ -3,9 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hint 2</title>
+    <title>Plaats</title>
+    <style>
+        body {
+            background-color: #A020F0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInPage 1s ease-out forwards;
+        }
+        
+        @keyframes fadeInPage {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    
+        p {
+            font-size: 28px;
+            margin: 10px 0;
+            opacity: 0;
+            animation: fadeInText 1s ease-out forwards;
+        }
+        
+        @keyframes fadeInText {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    
+        /* Specifieke animaties voor elke alinea */
+        .line1 {
+            animation-delay: 1s; /* Na 1 seconde zichtbaar */
+        }
+    
+        /* Slider instellingen */
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            padding: 20px 0;
+            opacity: 0;
+            animation: fadeInSlider 1s ease-out 0.5s forwards; /* Eerder in beeld, na 0.5s */
+        }
+        
+        .slider {
+            display: flex;
+            align-items: center;
+            animation: slide 10s linear infinite; /* Langzamere beweging */
+        }
+        
+        @keyframes slide {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .slider img {
+            max-width: 400px; /* Kleinere afbeeldingen */
+            height: auto; /* Proportionele hoogte */
+            margin: 10px; /* Ruimte rondom afbeeldingen */
+            object-fit: contain; /* Zorg dat volledige afbeelding zichtbaar is */
+            display: block;
+        }
+        
+        @keyframes fadeInSlider {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Dit is hint 2!</h1>
+
+
+    <div class="slider-container">
+        <div class="slider">
+            <img src="leuven.jpg.png" alt="afbeelding12">
+            <img src="belgie.jpg.png" alt="afbeelding13">
+            <img src="uni.jpg.png" alt="afbeelding13">
+        </div>
+    </div>
+    <p class="line1">
+        Jullie ontmoeten elkaar natuurlijk al vroeg in jullie leven,<br>
+        wat een geluk. Maar tijdens het studeren probeerde<br>
+        jullie wel erg ver van elkaar weg te blijven. De een vloog<br>
+        uit naar Freiburg, de ander vond zijn weg naar Leuven.<br>
+    </p>
+ 
+
 </body>
 </html>
