@@ -4,10 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lieve papa en mama</title>
+    <style>
+        body {
+            background-color: #A020F0; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            margin: 0;
+            color: white;
+            font-size: 24px;
+        }
+        p, h1, h2 {
+            text-indent: 10px; /* Inspringing voor beide paragrafen en kopjes */
+            opacity: 0; /* Begin onzichtbaar */
+            animation-fill-mode: forwards; /* Zorgt ervoor dat de animatie effect behoudt na afloop */
+        }
+        h1 {
+            margin-top: 10px;
+            font-size: 32px; /* Begin groot voor h1 */
+            animation: enlargeText 2s ease-out forwards; /* Animatie voor h1 */
+        }
+        p {
+            font-size: 24px;
+            animation: fadeIn 2s 2s forwards; /* Paragraaf verschijnt na h1 (2 seconden vertraging) */
+        }
+        h2 {
+            font-size: 24px;
+            animation: fadeIn 2s 3s forwards; /* h2 verschijnt 1 seconde later dan de paragraaf */
+        }
+
+        /* Animatie voor h1 om het groter te maken en daarna de normale grootte */
+        @keyframes enlargeText {
+            0% {
+                font-size: 90px; /* Start heel groot */
+                opacity: 1; /* Direct zichtbaar */
+            }
+            100% {
+                font-size: 30px; /* Normale grootte voor h1 */
+                opacity: 1;
+            }
+        }
+
+        /* Animatie voor p om langzaam in beeld te komen */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0; /* Begin onzichtbaar */
+            }
+            100% {
+                opacity: 1; /* Wordt zichtbaar */
+            }
+        }
+
+        img {
+            width: 250px; /* Stel de breedte van de afbeelding in */
+            height: 200px; /* Zorg ervoor dat de verhoudingen behouden blijven */
+            margin-top: 60px; /* Ruimte boven de afbeelding */
+        }
+    </style>
 </head>
 <body>
-    <h1>Sinterklaas heeft dit jaar een heel bijzonder cadeau voor jullie, omdat het niet zomaar een cadeau is krijgen jullie niet meteen te weten.
-    Gedurende avond komen jullie er misschien van zelf achter</h1>
-    <p>Liefs de Sint.</p>
+    <img src="sinterklaas.jpg.png" alt="Afbeelding van Sinterklaas">
+    <h1>Beste Bart en Sophia,</h1>
+    <p> De Sint kreeg te horen dat Bart volgend jaar alweer 54 jaar wordt,<br>
+        Sophia 55 jaar en jullie zijn natuurlijk ieder jaar de beste<br>
+        papa en mama van de hele wereld. Ook zijn jullie volgend jaar <br>
+        al weer 30 jaar getrouwd! De Sint kan zelf niet eens<br> 
+        voorstellen hoe het is om zelf (bijna) 30 te zijn, dus zo'n<br>
+        gelegenheid kunnen we niet zomaar voorbij laten gaan<br>
+        <br>
+        De Sint heeft daarom de hulp van zijn hulpsinten en<br>
+        cyberpieten ingeroepen om een bijzonder cadeau te<br>
+        regelen. Let goed op de hints en misschien kunnen<br>
+        jullie wel ontdekken wat de Sint dit jaar heeft geregeld!<br>
+
+        </p>
 </body>
 </html>
