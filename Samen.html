@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samen</title>
+    <style>
+        body {
+            background-color: #A020F0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            overflow: hidden;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease; /* Zachte overgang */
+        }
+
+        .visible {
+            opacity: 1; /* Maak zichtbaar */
+        }
+
+        p {
+            font-size: 28px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 20px;
+            margin-top: 20px;
+            background-color: #0000FF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, opacity 1s ease; /* Fade-in effect */
+            opacity: 0; /* Begin onzichtbaar */
+        }
+
+        button:hover {
+            background-color: #0000FF;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 400px; /* Breedte van de slider */
+            height: 500px; /* Hoogte van de slider */
+            display: none; /* Verberg afbeeldingen bij start */
+        }
+
+        .static-text {
+    position: absolute; /* Zorg dat de tekst boven de afbeeldingen blijft */
+    top: -50px; /* Zet de tekst boven de afbeeldingen */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 42px; /* Grotere tekst */
+    font-weight: bold;
+    white-space: nowrap; /* Voorkomt dat de tekst naar een volgende regel springt */
+    opacity: 0; /* Begin onzichtbaar */
+    transition: opacity 1s ease; /* Fade-in effect */
+    z-index: 2; /* Zorg dat de tekst boven de afbeeldingen staat */
+}
+
+        .slider img {
+            position: absolute; /* Zorg ervoor dat de afbeeldingen op elkaar liggen */
+            top: 0;
+            left: 0;
+            width: 100%; /* Breedte volledig vullen */
+            height: 100%; /* Hoogte volledig vullen */
+            object-fit: cover; /* Afbeeldingen vullen zonder vervorming */
+            object-position: center; /* Centreer de afbeelding */
+            opacity: 0; /* Begin onzichtbaar */
+            transition: opacity 1s ease; /* Zachte overgang bij zichtbaar maken */
+        }
+
+        .slider img.visible {
+            opacity: 1; /* Maak de zichtbare afbeelding volledig zichtbaar */
+        }
+    </style>
+</head>
+<body>
+    <p id="intro-text" class="fade-in">
+        Heel leuk natuurlijk zo'n grote familie met veel te veel kinderen.<br>
+        Langzaam wordt het helaas wel lastig om uitjes te plannen en<br>
+        iedereen mee te nemen. Naar Zuid-Afrika was een uitdaging,<br>
+        maar zelfs een dagje Amsterdam kan al lastig zijn.<br>
+        Kunnen we nog een uitje bedenken om met z'n allen op pad te gaan?<br>
+    </p>
+    <button id="start-button" class="fade-in" onclick="startSlider()">Klik hier!</button>
+    
+    <div class="slider-container" id="slider-container">
+        <div class="static-text" id="static-text">Wie gaan er mee?</div>
+        <div class="slider">
+            <img src="Mama.jpg.jpg" alt="Mama">
+            <img src="Papa.jpg.jpg" alt="Papa">
+            <img src="Ton.jpg" alt="Ton">
+            <img src="Anne.jpg" alt="Anne">
+            <img src="Gijs.jpg" alt="Gijs">
+            <img src="Daan.jpg" alt="Daan">
+            <img src="Eva.jpg.heic" alt="Eva">
+        </div>
+    </div>
+
+    <script>
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.slider img');
+        const sliderContainer = document.getElementById('slider-container');
+        const staticText = document.getElementById('static-text');
+        const introText = document.getElementById('intro-text');
+        const startButton = document.getElementById('start-button');
+
+        // Toon de introductietekst en de knop met een overgang
+        window.onload = () => {
+            setTimeout(() => introText.classList.add('visible'), 100); // Introductietekst fade-in
+            setTimeout(() => startButton.classList.add('visible'), 1100); // Knop verschijnt 1 seconde later
+        };
+
+        function startSlider() {
+            // Verberg de introductietekst en knop
+            introText.classList.remove('visible');
+            startButton.classList.remove('visible');
+
+            // Toon "Wie gaan mee?" met een fade-in na 1 seconde
+            setTimeout(() => {
+                introText.style.display = 'none'; // Verberg de introductietekst volledig
+                staticText.style.opacity = '1'; // Laat de tekst boven de afbeeldingen zien
+                sliderContainer.style.display = 'block'; // Maak slider-container zichtbaar
+            }, 1000);
+
+            // Start het tonen van de eerste afbeelding na 2 seconden
+            setTimeout(() => {
+                showNextImage();
+            }, 3000);
+        }
+
+        function showNextImage() {
+            // Verberg huidige afbeelding
+            if (currentImageIndex > 0) {
+                images[currentImageIndex - 1].classList.remove('visible');
+            }
+
+            // Toon volgende afbeelding
+            images[currentImageIndex].classList.add('visible');
+            
+            // Naar de volgende afbeelding gaan
+            currentImageIndex++;
+
+            // Als we nog meer afbeeldingen hebben, roepen we de functie opnieuw aan
+            if (currentImageIndex < images.length) {
+                setTimeout(showNextImage, 3000); // Volgende afbeelding na 3 seconden
+            }
+        }
+    </script>
+</body>
+</html>
