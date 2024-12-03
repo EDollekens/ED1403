@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wezens</title>
+    <style>
+        body {
+            background-color: #A020F0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInPage 1s ease-out forwards;
+        }
+        
+        @keyframes fadeInPage {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    
+        p {
+            font-size: 28px;
+            margin: 10px 0;
+            opacity: 0;
+            animation: fadeInText 1s ease-out forwards;
+        }
+        
+        @keyframes fadeInText {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    
+        /* Specifieke animaties voor elke alinea */
+        .line1 {
+            animation-delay: 1s; /* Na 1 seconde zichtbaar */
+        }
+    
+        /* Slider instellingen */
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            padding: 20px 0;
+            opacity: 0;
+            animation: fadeInSlider 1s ease-out 0.5s forwards; /* Eerder in beeld, na 0.5s */
+        }
+        
+        .slider {
+            display: flex;
+            align-items: center;
+            animation: slide 10s linear infinite; /* Langzamere beweging */
+        }
+        
+        @keyframes slide {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .slider img {
+            max-width: 300px; /* Kleinere afbeeldingen */
+            height: 300px; /* Proportionele hoogte */
+            margin: 10px; /* Ruimte rondom afbeeldingen */
+            object-fit: contain; /* Zorg dat volledige afbeelding zichtbaar is */
+            display: block;
+        }
+        
+        @keyframes fadeInSlider {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <p class="line1">
+        Bart is natuurlijk helemaal gek van zijn Birds, maar zelfs Sophia verrast vriend en Enemy<br>
+        door mee op pad te gaan. Zeker de laatste jaren wordt zelfs Sophia van Finland, naar Texel, <br>
+        naar Schotland gesleept om gekke vogels te spotten. <br>
+        Misschien tijd om op zoek te gaan naar andere vliegende wezens?
+    </p>
+
+    <div class="slider-container">
+        <div class="slider">
+            <img src="vogel1.jpg.webp" alt="afbeelding1">
+            <img src="vogel2.jpg" alt="afbeelding2">
+            <img src="draak4.jpg" alt="afbeelding4">
+            <img src="vogel3.jpg.png" alt="afbeelding5">
+            <img src="draak1.jpg" alt="afbeelding6">
+            <img src="vogel4.jpg" alt="afbeelding7">
+            <img src="vogel5.jpg" alt="afbeelding8">
+            <img src="draak2.jpg" alt="afbeelding10">
+            <img src="vogel8.jpg" alt="afbeelding11">
+            <img src="draak3.jpg" alt="afbeelding11">
+            
+        </div>
+    </div>
+
+</body>
+</html>
