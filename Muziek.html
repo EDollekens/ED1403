@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muziek</title>
+    <style>
+        body {
+            background-color: #A020F0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            overflow: hidden; /* Geen scrollbalken */
+            transition: opacity 1s ease-out; /* Zorg voor een fade-out bij navigatie */
+        }
+
+        body.fade-out {
+            opacity: 0; /* Fade-out effect */
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 10px; /* Ruimte tussen tekst en knop */
+            z-index: 10; /* Zorg dat de tekst boven de afbeeldingen ligt */
+        }
+
+        .content p {
+            opacity: 0; /* Begin onzichtbaar */
+        }
+
+        p {
+            font-size: 28px;
+            margin: 0;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        h2 {
+            font-size: 38px;
+            margin-top: 20px;
+            opacity: 0; /* Begin onzichtbaar */
+            animation: fadeIn 1s ease-out 6s forwards; /* Verschijnt 3 seconden na pagina-laden */
+            }          
+
+        .content p:first-of-type {
+            animation: fadeIn 1s ease-out 1s forwards; /* Eerste alinea verschijnt na 1 seconde */
+        }
+
+        .content p:last-of-type {
+            animation: fadeIn 1s ease-out 1s forwards; /* Tweede alinea verschijnt 3 seconden na pagina-laden */
+        }
+
+        .side-images {
+            position: absolute;
+            top: 100px; /* Naar beneden verplaatst */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 60px; /* Meer ruimte tussen de afbeeldingen */
+            height: 200px;
+            animation: fadeIn 2s ease-out 1s forwards; /* Afbeeldingen verschijnen na 3 seconden */
+            opacity: 0;
+        }
+
+        .left-side {
+            left: 150px; /* Nog verder naar binnen verplaatst */
+        }
+
+        .right-side {
+            right: 150px; /* Nog verder naar binnen verplaatst */
+        }
+
+        .side-images img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover; /* Zorg dat de foto's goed gevuld zijn */
+            transform: rotate(calc(var(--rotate-angle, 0deg)));
+            transition: transform 0.3s ease;
+        }
+
+        .side-images img:hover {
+            transform: scale(1.1) rotate(calc(var(--rotate-angle, 0deg))); /* Vergroting bij hover */
+        }
+
+        .button-container {
+            margin-top: 100px;
+            opacity: 0; /* Begin onzichtbaar */
+            animation: fadeIn 2s ease-out 15s forwards; /* Knop verschijnt na 7 seconden */
+        }
+
+        .button-container button {
+            padding: 15px 25px;
+            font-size: 16px;
+            color: white;
+            background-color: #0000FF;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #0000FF; /* Lichtere oranje kleur bij hover */
+        }
+        .play-btn {
+            background-color: #fff;
+            color: #A020F0;
+            border: none;
+            padding: 20px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 30px;
+            opacity: 0; /* Begin onzichtbaar */
+            animation: fadeIn 2s 6s forwards; /* De knop verschijnt na 1 seconde */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="content">
+        <p>Jullie hebben alle hinst ontvangen, <br>
+            heb jullie al een idee wat het cadeau is?<br>
+            Jullie krijgen hierbij de allerlaaste hint,<br>
+            tevens de onthulling van het cadeau!
+        </p>
+        <h2>Wie is de artiest van dit liedje?</h2>
+
+    </div>
+    <button class="play-btn" id="playButton">▶️ Afspelen</button>
+
+
+    <audio id="myAudio">
+        <source src="Imagine Dragons - Natural.mp3#t=120,140" type="audio/mp3">
+        Je browser ondersteunt het afspelen van audio niet.
+    </audio>
+    
+    <script>
+        var audio = document.getElementById("myAudio");
+        var playButton = document.getElementById("playButton");
+
+        // Versnel de afspeelsnelheid naar 5x
+        audio.playbackRate = 5;
+
+        // Functie om audio af te spelen wanneer op de knop wordt geklikt
+        playButton.onclick = function() {
+            audio.play();
+        };
+    </script>
+
+    <div class="button-container">
+        <button onclick="navigateToNextPage()">Klik hier voor de onthulling</button>
+    </div>
+
+    <script>
+        function navigateToNextPage() {
+            document.body.classList.add('fade-out'); // Voeg fade-out effect toe
+            setTimeout(() => {
+                window.location.href = "Einde.html"; // Navigeer naar nieuwe pagina
+            }, 1000); // Wacht tot fade-out voltooid is
+        }
+    </script>
+</body>
+</html>
