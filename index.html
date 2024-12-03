@@ -6,80 +6,122 @@
     <title>Lieve papa en mama</title>
     <style>
         body {
-            background-color: #A020F0; 
+            background-color: #A020F0;
+            margin: 0;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             text-align: center;
-            margin: 0;
             color: white;
             font-size: 24px;
+            overflow: hidden; /* Geen scrollbalken */
+            transition: opacity 1s ease-out; /* Zorg voor een fade-out bij navigatie */
         }
-        p, h1, h2 {
-            text-indent: 10px; /* Inspringing voor beide paragrafen en kopjes */
+
+        body.fade-out {
+            opacity: 0; /* Fade-out effect */
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 10px; /* Ruimte tussen tekst en knop */
+            z-index: 10; /* Zorg dat de tekst boven de afbeeldingen ligt */
+        }
+
+        .content p {
             opacity: 0; /* Begin onzichtbaar */
-            animation-fill-mode: forwards; /* Zorgt ervoor dat de animatie effect behoudt na afloop */
         }
-        h1 {
-            margin-top: 10px;
-            font-size: 38px; /* Begin groot voor h1 */
-            animation: enlargeText 2s ease-out forwards; /* Animatie voor h1 */
-        }
+
         p {
-            font-size: 26px;
-            animation: fadeIn 2s 2s forwards; /* Paragraaf verschijnt na h1 (2 seconden vertraging) */
-        }
-        h2 {
             font-size: 24px;
-            animation: fadeIn 2s 3s forwards; /* h2 verschijnt 1 seconde later dan de paragraaf */
+            margin: 0;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            line-height: 1.4;
         }
 
-        /* Animatie voor h1 om het groter te maken en daarna de normale grootte */
-        @keyframes enlargeText {
-            0% {
-                font-size: 90px; /* Start heel groot */
-                opacity: 1; /* Direct zichtbaar */
-            }
-            100% {
-                font-size: 38px; /* Normale grootte voor h1 */
-                opacity: 1;
-            }
+        .content p:first-of-type {
+            animation: fadeIn 1s ease-out 1s forwards; /* Eerste alinea verschijnt na 1 seconde */
         }
 
-        /* Animatie voor p om langzaam in beeld te komen */
+        .content p:last-of-type {
+            animation: fadeIn 1s ease-out 2s forwards; /* Tweede alinea verschijnt 3 seconden na pagina-laden */
+        }
+
+        .side-images {
+            position: absolute;
+            top: 200px; /* Naar beneden verplaatst */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 60px; /* Meer ruimte tussen de afbeeldingen */
+            height: 200px;
+            animation: fadeIn 2s ease-out 1s forwards; /* Afbeeldingen verschijnen na 3 seconden */
+            opacity: 0;
+        }
+
+        .left-side {
+            left: 75px; /* Nog verder naar binnen verplaatst */
+        }
+
+        .right-side {
+            right: 75px; /* Nog verder naar binnen verplaatst */
+        }
+
+        .side-images img {
+            width: 170px;
+            height: 1900px;
+            object-fit: cover; /* Zorg dat de foto's goed gevuld zijn */
+            transform: rotate(calc(var(--rotate-angle, 0deg)));
+            transition: transform 0.3s ease;
+        }
+
+        .side-images img:hover {
+            transform: scale(1.1) rotate(calc(var(--rotate-angle, 0deg))); /* Vergroting bij hover */
+        }
+
         @keyframes fadeIn {
             0% {
-                opacity: 0; /* Begin onzichtbaar */
+                opacity: 0;
             }
             100% {
-                opacity: 1; /* Wordt zichtbaar */
+                opacity: 1;
             }
-        }
-
-        img {
-            width: 300px; /* Stel de breedte van de afbeelding in */
-            height: 200px; /* Zorg ervoor dat de verhoudingen behouden blijven */
-            margin-top: 60px; /* Ruimte boven de afbeelding */
         }
     </style>
 </head>
 <body>
-    <img src="sinterklaas.jpg.png" alt="Afbeelding van Sinterklaas">
-    <h1>Beste Bart en Sophia,</h1>
-    <p> De Sint kreeg te horen dat Bart volgend jaar alweer 54 jaar wordt,<br>
-        Sophia 55 jaar en jullie zijn natuurlijk ieder jaar de beste<br>
-        papa en mama van de hele wereld. Ook zijn jullie volgend jaar <br>
-        al weer 30 jaar getrouwd! De Sint kan zelf niet eens<br> 
-        voorstellen hoe het is om zelf (bijna) 30 te zijn, dus zo'n<br>
-        gelegenheid kunnen we niet zomaar voorbij laten gaan<br>
-        <br>
-        De Sint heeft daarom de hulp van zijn hulpsinten en<br>
-        cyberpieten ingeroepen om een bijzonder cadeau te<br>
-        regelen. Let goed op de hints en misschien kunnen<br>
-        jullie wel ontdekken wat de Sint dit jaar heeft geregeld!<br>
+    <div class="side-images left-side">
+        <img src="trouw1.jpg" alt="Afbeelding links 1">
+    </div>
 
+    <div class="side-images right-side">
+        <img src="trouw2.jpg" alt="Afbeelding rechts 1">
+
+    </div>
+
+    <div class="content">
+        <h1>Beste Bart en Sophia,</h1>
+        <p> De Sint kreeg te horen dat Bart volgend jaar alweer 54 jaar wordt,<br>
+            Sophia 55 jaar en jullie zijn natuurlijk ieder jaar papa en<br>
+            mama #1 van de hele wereld. Ook zijn jullie volgend jaar <br>
+            al weer 30 jaar getrouwd! De Sint kan zelf niet eens<br> 
+            voorstellen hoe het is om zelf (bijna) 30 te zijn, dus zo'n<br>
+            gelegenheid kunnen we niet zomaar voorbij laten gaan<br>
+            <br>
+            De Sint heeft daarom de hulp van zijn hulpsinten en<br>
+            cyberpieten ingeroepen om een bijzonder cadeau te<br>
+            regelen. Let goed op de hints en misschien kunnen<br>
+            jullie wel ontdekken wat de Sint dit jaar heeft geregeld!<br>
+            <br>
+            (Ps: mogelijk kunnen jullie merken dat een van de hulpsinten<br>
+            een beetje veel Engels spreekt de laatste tijd, I'm so sorry)
         </p>
+    </div>
 </body>
 </html>
